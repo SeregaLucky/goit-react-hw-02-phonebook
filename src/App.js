@@ -18,20 +18,11 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  handleChange = ({ target }) => {
-    const { name, value } = target;
-    this.setState({ [name]: value });
-  };
+  handleChange = e => this.setState({ filter: e.target.value });
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const { name, number } = this.state;
-
+  addContact = ({ name, number }) => {
     const contact = {
       id: shortid.generate(),
       name,
@@ -40,8 +31,6 @@ class App extends Component {
 
     this.setState(state => ({
       contacts: [...state.contacts, contact],
-      name: '',
-      number: '',
     }));
   };
 
@@ -52,7 +41,7 @@ class App extends Component {
   };
 
   render() {
-    const { contacts, filter, name, number } = this.state;
+    const { contacts, filter } = this.state;
 
     const contactsAndFilter = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase()),
@@ -62,9 +51,7 @@ class App extends Component {
       <>
         <h1>Phonebook</h1>
         <ContactForm
-          name={name}
-          number={number}
-          onSubmit={this.handleSubmit}
+          addContact={this.addContact}
           onChange={this.handleChange}
         />
 
