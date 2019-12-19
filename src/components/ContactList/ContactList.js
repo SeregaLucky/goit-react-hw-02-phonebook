@@ -1,5 +1,6 @@
 /* import - node_modules */
 import React from 'react';
+import T from 'prop-types';
 
 /*
  * COMONENT
@@ -17,5 +18,17 @@ const ContactList = ({ list, deleteContant }) => (
     ))}
   </ul>
 );
+
+ContactList.propTypes = {
+  list: T.arrayOf(
+    T.shape({
+      id: T.string.isRequired,
+      name: T.string,
+      contact: T.string,
+    }),
+  ).isRequired,
+
+  deleteContant: T.func.isRequired,
+};
 
 export default ContactList;

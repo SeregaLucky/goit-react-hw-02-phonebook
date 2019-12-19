@@ -1,10 +1,16 @@
 /* import - node_modules */
 import React, { Component } from 'react';
+import T from 'prop-types';
 
 /*
  * COMONENT
  */
 class ContactForm extends Component {
+  static propTypes = {
+    addContact: T.func.isRequired,
+    onChange: T.func.isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -27,21 +33,24 @@ class ContactForm extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={name}
-          onChange={this.handleChange}
-          name="name"
-        />
-        <input
-          type="number"
-          value={number}
-          onChange={this.handleChange}
-          name="number"
-        />
-        <button type="submit">Add</button>
-      </form>
+      <>
+        <p>Add contact:</p>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={name}
+            onChange={this.handleChange}
+            name="name"
+          />
+          <input
+            type="number"
+            value={number}
+            onChange={this.handleChange}
+            name="number"
+          />
+          <button type="submit">Add</button>
+        </form>
+      </>
     );
   }
 }
