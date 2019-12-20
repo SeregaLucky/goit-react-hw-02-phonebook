@@ -50,10 +50,7 @@ class App extends Component {
     return (
       <>
         <h1>Phonebook</h1>
-        <ContactForm
-          addContact={this.addContact}
-          onChange={this.handleChange}
-        />
+        <ContactForm addContact={this.addContact} />
 
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.handleChange} />

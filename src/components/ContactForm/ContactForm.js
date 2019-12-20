@@ -8,7 +8,6 @@ import T from 'prop-types';
 class ContactForm extends Component {
   static propTypes = {
     addContact: T.func.isRequired,
-    onChange: T.func.isRequired,
   };
 
   state = {
