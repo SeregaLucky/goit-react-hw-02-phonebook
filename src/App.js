@@ -20,7 +20,7 @@ class App extends Component {
     filter: '',
   };
 
-  handleChange = e => this.setState({ filter: e.target.value });
+  handleChangeFilter = e => this.setState({ filter: e.target.value });
 
   addContact = ({ name, number }) => {
     const contact = {
@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     const { contacts, filter } = this.state;
 
-    const contactsAndFilter = contacts.filter(contact =>
+    const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase()),
     );
 
@@ -53,9 +53,9 @@ class App extends Component {
         <ContactForm addContact={this.addContact} />
 
         <h2>Contacts</h2>
-        <Filter value={filter} onChange={this.handleChange} />
+        <Filter value={filter} onChange={this.handleChangeFilter} />
         <ContactList
-          list={contactsAndFilter}
+          list={filteredContacts}
           deleteContant={this.deleteContant}
         />
       </>
